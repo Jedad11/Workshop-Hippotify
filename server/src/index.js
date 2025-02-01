@@ -1,6 +1,5 @@
 import express from "express";
 import connection from "./config/database.js";
-import db from "./config/database.js";
 import playlistRoute from "./routes/playlistRoute.js";
 
 const app = express();
@@ -10,6 +9,7 @@ app.use(express.json());
 
 app.use("/api/playlists", playlistRoute);
 
+import db from "./config/database.js";
 const userId = 26;
 app.get("/api/user", async (req, res) => {
   try {
