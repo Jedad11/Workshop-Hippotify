@@ -6,13 +6,17 @@ import SideBar from "./components/SideBar";
 import MusicPlayer from "./components/MusicPlayer";
 
 import { useEffect, useState } from "react";
+import { getUser } from "./services/userService";
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState(null);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(); 
 
   const fetchUserData = async () => {
     // insert you code here
+    const response = await getUser();
+    console.log(response);
+    setUser(response); // add data to user usestate
   };
   useEffect(() => {
     fetchUserData();
