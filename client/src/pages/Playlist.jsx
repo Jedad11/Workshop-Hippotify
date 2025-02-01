@@ -43,8 +43,11 @@ export default function Playlist() {
   const fetchPlaylistData = async () => {
     // insert your code here
     const fetchedPlaylist = await getPlaylistById(id || 1);
-    console.log(fetchedPlaylist);
     setPlaylist(fetchedPlaylist); 
+    if (fetchedPlaylist.status === 403) {
+      alert("You are not authorized to access this playlist.");
+      navigate("/playlist");
+    }
   };
   useEffect(() => {
     fetchPlaylistData();
@@ -53,14 +56,16 @@ export default function Playlist() {
 
   const updatePlaylistData = async () => {
     // insert your code here
-    await updatePlaylist(
+    const response = await updatePlaylist(
       playlist.id,
       newTitle || playlist.title,
       newDescription || playlist.description
     )
     fetchPlaylistData();
     fetchOwnedPlaylistData();
-    alert("Playlist updated successfully");
+    if(response.success){
+      alert("Playlist updated successfully");
+    }
   };
 
   const handleTrackRemoval = () => {
