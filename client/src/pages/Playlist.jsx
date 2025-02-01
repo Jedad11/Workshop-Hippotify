@@ -24,7 +24,7 @@ import { Button } from "../components/ui/button";
 import TrackCard from "../components/TrackCard";
 import { useEffect, useState } from "react";
 import { playlistMockUp } from "../services/MockUpData";
-import { getPlaylistById } from "../services/playlistService";
+import { getOwnedPlaylist, getPlaylistById, updatePlaylist } from "../services/playlistService";
 
 export default function Playlist() {
   const id = useParams().id || 1;
@@ -37,7 +37,7 @@ export default function Playlist() {
 
   const fetchOwnedPlaylistData = async () => {
     // insert your code here
-    const fetchedOwnedPlaylist = playlistMockUp.filter((item) => item.id != 1);
+    const fetchedOwnedPlaylist = await getOwnedPlaylist();
     setOwnedPlaylist(fetchedOwnedPlaylist);
   };
   const fetchPlaylistData = async () => {
@@ -53,10 +53,18 @@ export default function Playlist() {
 
   const updatePlaylistData = async () => {
     // insert your code here
+    await updatePlaylist(
+      playlist.id,
+      newTitle || playlist.title,
+      newDescription || playlist.description
+    )
+    fetchPlaylistData();
+    fetchOwnedPlaylistData();
+    alert("Playlist updated successfully");
   };
 
   const handleTrackRemoval = () => {
-    // fetchPlaylistData();
+    fetchPlaylistData();
   };
 
   return (

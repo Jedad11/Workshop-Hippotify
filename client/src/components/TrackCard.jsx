@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { AlertRoot, Flex, Image, Text } from "@chakra-ui/react";
 import { Button } from "./ui/button";
 import {
   PopoverBody,
@@ -9,6 +9,7 @@ import {
 } from "./ui/popover";
 import { FaEllipsisVertical, FaPlus } from "react-icons/fa6";
 import { SlTrash } from "react-icons/sl";
+import { addTrackToPlaylist, removeTrackFromPlaylist } from "../services/playlistService";
 
 export default function TrackCard({
   id,
@@ -23,10 +24,19 @@ export default function TrackCard({
 
   const handleAddTrack = async (playlistId) => {
     // insert your code here
+    const response = await addTrackToPlaylist(playlistId, track.track_id);
+    if(response.success){
+      alert("added")
+    }
   };
 
   const handleRemoveTrack = async () => {
     // insert your code here
+    const response = await removeTrackFromPlaylist(id, track.id);
+    if(response.success){
+      alert("removed")
+      onRemove()
+    }
   };
   
   return (
