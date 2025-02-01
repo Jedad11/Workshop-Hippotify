@@ -15,7 +15,6 @@ function App() {
   const fetchUserData = async () => {
     // insert you code here
     const response = await getUser();
-    console.log(response);
     setUser(response); // add data to user usestate
   };
   useEffect(() => {

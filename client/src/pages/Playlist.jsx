@@ -24,6 +24,7 @@ import { Button } from "../components/ui/button";
 import TrackCard from "../components/TrackCard";
 import { useEffect, useState } from "react";
 import { playlistMockUp } from "../services/MockUpData";
+import { getPlaylistById } from "../services/playlistService";
 
 export default function Playlist() {
   const id = useParams().id || 1;
@@ -41,7 +42,8 @@ export default function Playlist() {
   };
   const fetchPlaylistData = async () => {
     // insert your code here
-    const fetchedPlaylist = playlistMockUp.find((item) => item.id == id);
+    const fetchedPlaylist = await getPlaylistById(id || 1);
+    console.log(fetchedPlaylist);
     setPlaylist(fetchedPlaylist); 
   };
   useEffect(() => {
@@ -96,9 +98,9 @@ export default function Playlist() {
                 pt={"10px"}
                 gap={"5px"}
               >
-                <Image src={playlist.image_url} height={"22px"} />
+                <Image src={playlist.author_image} height={"22px"} />
                 <Text>
-                  {playlist.author} - {playlist.tracks?.length} songs,{" "}
+                  {playlist.author_name} - {playlist.tracks?.length} songs,{" "}
                   {playlist.duration}
                 </Text>
               </Flex>
@@ -124,9 +126,9 @@ export default function Playlist() {
                     pt={"10px"}
                     gap={"5px"}
                   >
-                    <Image src={playlist.image_url} height={"22px"} />
+                    <Image src={playlist.author_image} height={"22px"} />
                     <Text>
-                      {playlist.author} - {playlist.tracks?.length} songs,{" "}
+                      {playlist.author_name} - {playlist.tracks?.length} songs,{" "}
                       {playlist.duration}
                     </Text>
                   </Flex>

@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flex, Box, Image } from "@chakra-ui/react";
 import { Button } from "../components/ui/button";
-import { playlistMockUp } from "../services/MockUpData";
+import { getUserPlaylists } from "../services/playlistService";
 
 export default function SideBar() {
   const navigate = useNavigate();
-  const [playlist, setPlaylist] = useState(playlistMockUp);
+  const [playlist, setPlaylist] = useState([]);
 
   const fetchPlaylistData = async () => {
     // insert your code here
+    const response = await getUserPlaylists();
+    setPlaylist(response)
   };
-  // useEffect(() => {
-  //   fetchPlaylistData();
-  // }, []);
+  useEffect(() => {
+    fetchPlaylistData();
+  }, []);
 
   return (
     <Box backgroundColor={"black"}>
