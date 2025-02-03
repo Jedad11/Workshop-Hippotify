@@ -12,7 +12,7 @@ export const getUser = async (req, res) => {
         message: "User retrieved successfully",
       });
     } catch (error) {
-      console.log("Error: ", error);
+      console.error(error);
       return res.status(500).json({
         success: false,
         data: null,

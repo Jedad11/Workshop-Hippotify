@@ -12,7 +12,7 @@ export const getOwnedPlaylist = async (req, res) => {
             message: "Playlist retrieved successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,
@@ -31,7 +31,7 @@ export const getUserPlaylists = async (req, res) => {
             message: "Playlist retrieved successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,
@@ -81,7 +81,7 @@ export const getPlaylistById = async (req, res) => {
             message: "Playlist retrieved successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,
@@ -108,7 +108,7 @@ export const updatePlaylist = async (req, res) => {
             message: "Playlist update successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,
@@ -135,7 +135,7 @@ export const addTracktoPlaylist = async (req, res) => {
             message: "Playlist added successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,
@@ -162,7 +162,7 @@ export const deleteTrackFromPlaylist = async (req, res) => {
             message: "Playlist remove successfully"
         });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error(error);
         return res.status(500).json({
             success: false,
             data: null,

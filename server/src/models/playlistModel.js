@@ -3,7 +3,7 @@ import db from "../config/database.js"
 export const getOwnedPlaylist = async (userId) => {
     const [response] = await db.promise().query(
         `SELECT id, title
-        FROM playlists
+        FROM playlistss
         WHERE user_id = ?`, [userId]
     );
     return response;
